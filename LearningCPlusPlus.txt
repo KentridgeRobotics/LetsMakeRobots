@@ -371,7 +371,7 @@ int distance3;
 But you can do this more easily, and more flexibly, by using an "array". An array lets you
 say that you want a certain number of places to store values of a given type.
 
-int distances = new int[5]; // 5 is the "size" of the array.
+int distances[5]; // 5 is the "size" of the array.
 
 Then you can use particular locations in the array ("elements" of the array) as variables of the
 element type. You specify an element of the array by giving its "index", which is the number that
@@ -386,6 +386,8 @@ it makes programming easier if you can use a number to indicate which variable y
 about. Also, an array is itself a variable, of type "array of whatever", which means that you
 can have variables and parameters that are arrays. So you might create a method like this:
 
+
+// De-Java-ized content ends here.
 static void printMessage(int number, String[] colors) {
 	System.out.println("Color #" + number + " is " + colors[number]);
 }
