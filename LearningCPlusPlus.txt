@@ -29,6 +29,12 @@ Some vocabulary:
 	any number from -2,147,483,648 up to 2,147,483,647, inclusive.
 	32
 	-129
+
+- double: a real number, which can have a decimal part. "Double" is short for "double-precision floating
+	point number". Examples:
+		3.14159265358979
+		11.0
+		-420000000.11
 	
 - variable: a named place to store a value of a particular type. You can put an integer into
 	an "int" variable. Similarly for other types of values. Examples:
@@ -83,9 +89,8 @@ way of writing the main function is:
 
 // main returns an error code, to indicate whether there was an error. A return value of 0 is success, anything
 // else is failure. 
-int main(int argc, char *argv[])
+int main()
 {
-	// argc and argv are interesting if you want to have command-line parameters for your program. Ignore them for now.
 	
 	// Do your stuff here...
 
@@ -140,7 +145,17 @@ std::cout << 2 << " + " << 2 << " = " << 4 << std::endl; // prints "2 + 2 = 4"
 
 1. Hello World
 
-Write a program that prints out "Hello Word", and make it run.
+Every intro to programming languages needs to tell you how to print out Hello Word. Here's one way to do
+it in C++:
+
+Put the following lines into a file called "helloword.cpp":
+
+#include <iostream>
+int main()
+{
+	std::cout << "Hello World" << std::endl;
+	return 0;
+}
 
 
 -------------------
@@ -199,7 +214,7 @@ when you're programming, you don't put everything into the "main" method. Instea
 write a number of smaller methods to split up the work, so the main method can be a sequence
 of calls to other methods.
 
-int (int argc, char *argv[]) {
+int () {
 	doFirstThing();
 	doSecondThing();
 	doThirdThing();
@@ -264,7 +279,7 @@ The result should look like this:
 
 int is a data type that can hold any integer (within limits). But in programming, it's very, very common
 to want to talk about values that can only be either true or false. Is the light on? Is the robot moving?
-Is the number zero? Is the password correct? For cases like that, there is a special data type called "boolean".
+Is the number zero? Is the password correct? For cases like that, there is a special data type called "bool".
 (The name is from George Boole, who invented a type of logic about combining variables that can be
 true or false. We call this kind of logic "Boolean logic" or "Boolean algebra".) 
 
@@ -356,67 +371,46 @@ else {
 }
 
 
+7. Containers
 
-7. Arrays
+The C++ standard library (also called the "Standard Template Library" or STL) provides
+a lot of useful tools for building programs. Some of the most useful of these tools
+are "containers".
 
-If you have a number of values to store, you might create a lot of variables. For example, if you want to record a series of
-distance measurements, you might have a lot of variables like:
+What's a container? Well, in all of the examples above, for every item you want to keep
+track of, you created a variable with its own name. x, y, n, number, etc. But what happens
+if you want to keep track of a lot of things, and you don't know ahead of time how many there
+will be?
 
-int distance0;
-int distance1;
-int distance2;
-int distance3;
-...
+For example, you might want to find the average GPA for the students in a school. You wouldn't
+want to have your code look like this:
 
-But you can do this more easily, and more flexibly, by using an "array". An array lets you
-say that you want a certain number of places to store values of a given type.
+double averge = (gpa1 + gpa2 + gpa3 + gpa4 + gpa5 + gpa6) / 6;
 
-int distances[5]; // 5 is the "size" of the array.
+Why not? Because you would have to write a different program for every possible number
+of students! You would have to create a separate variable for each student's GPA.
 
-Then you can use particular locations in the array ("elements" of the array) as variables of the
-element type. You specify an element of the array by giving its "index", which is the number that
-tells you which position in the array you want. 
+Instead, we can store lists or sets of values in containers. A container stores a collection
+of values of the same type (such as int or double). One of the most useful containers
+is a "vector", which is a container that holds its contents in whatever order you put them
+(sort of like a bookshelf--the books don't organize themselves). When you create a container
+in the STL, you have to specify the type of the items you're going to store in the container.
+For example:
 
-NOTE: The first element in the array is at index 0, and the last element is at index (size - 1) !!!!
+std::vector<int> mynumbers; // This is a "vector of ints".
+mynumbers.push_back(99);
+mynumbers.push_back(42);
+mynumbers.push_back(11);
 
-distances[0] = 42;
-
-Why is this useful? Because sometimes you don't know how many elements you want to have. Also,
-it makes programming easier if you can use a number to indicate which variable you're talking
-about. Also, an array is itself a variable, of type "array of whatever", which means that you
-can have variables and parameters that are arrays. So you might create a method like this:
-
-
-// De-Java-ized content ends here.
-static void printMessage(int number, String[] colors) {
-	System.out.println("Color #" + number + " is " + colors[number]);
+for (int i = 0; i < 3; ++i)
+{
+	std::cout << mynumbers[i] << " ";
 }
+std::cout << std::endl;
 
-And then you might use that method like this:
+prints out: 
+99 42 11
 
-String[] colors = new String[4];
-colors[0] = "red";
-colors[1] = "blue";
-colors[2] = "green";
-colors[3] = "magenta";
-
-int userSelectedColor = 2;
-
-printMessage(userSelectedColor, colors);
-
-
-Task: Write a method that returns an array containing all of the integers from
-	0 to a value n that is specified by the caller. It should look something like
-	this:
-	
-static int[] numbersUpToN(int n) {
-	int[] integers = new int[n+1]; // Can you see why we need n+1 elements?
-	
-	// Fill in the "integers" array with the correct values
-	// Hint: Use a for loop.
-		
-	return integers;
-}
 
 --------------------------------------------------------------------------
 
@@ -438,7 +432,7 @@ the same number, etc., until you reach the end of the list. And then move your f
 
 Implement the Sieve of Eratosthenes as a method like this:
 
-static int[] findPrimesLessThanN(int n)
+void printPrimesLessThanN(int n)
 {
 	// We're using possiblePrimes to keep track of which numbers we've
 	// eliminates as possibly being prime. This is like crossing them off a
@@ -446,11 +440,16 @@ static int[] findPrimesLessThanN(int n)
 	// the number is, so the only information about the number we have to store
 	// is whether or not we've crossed it off our list.
 
-	boolean[] possiblePrimes = new boolean[n];
-	// First: set all the elements of possiblePrimes to true.
-
+	std::vector<bool> possiblePrimes;
+	// First: Use push_back to add n instances of true to possiblePrimves.
+	for (int i=0; i<n; ++i)
+	{
+		possiblePrimes.push_back(true);
+	}
 	// Second: set possiblePrimes[0] and possiblePrimes[1] to false, since we know
 	// by definition that 0 and 1 are not prime.
+	possiblePrimes[0] = false;
+	possiblePrimes[1] = false;
 	
 	// Third: Make a for loop. Have a variable currentPossible that starts at 2, and have the
 	// loop continue for as long as currentPossible < n, and increment by 1.
@@ -461,20 +460,8 @@ static int[] findPrimesLessThanN(int n)
 	
 	// Fifth, INSIDE this inner for loop, set possiblePrimes[currentMultiple] to false
 	
-	
-	// Sixth: OK, this is outside of both for loops. Now you need to count how many elements in possiblePrimes
-	// are true. This is going to be the number of elements to return as primes.
-	
-	// Seventh: Create an array of ints big enough to fit all the primes
-	
-	// Eighth: Create a variable currentPrimeIndex = 0
-
-	// Ninth: Using a for loop with index i, go through the array of possiblePrimes. 
-	// Every time you find a true value, set primes[currentPrimeIndex] = i.
-	// Then increment currentPrimeIndex
-	
-	// Tenth: Return primes.
-	// 
+	// Finally, outside all the loops above, create a separate for loop, that iterates over
+	// all the items in possiblePrimes and prints out the index if possiblePrime[i] is true.
 }
 
 

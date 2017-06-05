@@ -1,0 +1,51 @@
+Getting Ready to Code
+
+Before we can start programming, you will need to have some tools to program with.
+
+To start with, you'll need Git. If you use Windows, I recommend getting this 
+as part of the Github desktop application:
+
+https://desktop.github.com/
+
+You'll need to create a Github account for yourself.
+https://github.com/
+
+Once you have an account, try the Github "Hello World" introduction.
+https://guides.github.com/activities/hello-world/
+
+This is a good video introduction to Git and Github: https://youtu.be/MJUJ4wbFm_A
+
+---------------------------------------------------------------------
+
+Next, you will need a development environment. This means, at least, that you
+will have a computer with a text editor and a compiler installed on it. It's fine
+to use Windows, Linux, or Mac, since all have excellent development tools.
+
+On Windows, I recommend using Visual Studio Community 2017, which contains both compiler
+and editor and is freely available here:
+https://www.visualstudio.com/
+(Under "Download Visual Studio", select "Community 2017")
+
+On Linux, I like either Emacs or Vim for editors, and g++ for a compiler, and I think
+that these are also available on Mac. (XCode is probably more popular on the Mac, but
+I haven't used it much.)
+
+In any case, get computer prepared by installing a development environment. 
+
+----------------------------------------------------------------------
+
+First coding assignment
+
+It sounds like C++ is going to be used for at least some of our programming
+in the next build season. So let's get familiar with it. Read through the short guide to C++ here,
+and do the exercises:
+https://github.com/KentridgeRobotics/LetsMakeRobots/blob/master/LearningCPlusPlus.txt
+
+
+For more in-depth information, these are good starting links as introductions to C++:
+http://www.cplusplus.com/doc/tutorial/
+
+https://en.wikiversity.org/wiki/C%2B%2B/Introduction
+
+https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-096-introduction-to-c-january-iap-2011/index.htm
+
