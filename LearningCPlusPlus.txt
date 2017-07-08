@@ -142,28 +142,73 @@ std::cout << 2 << " + " << 2 << " = " << 4 << std::endl; // prints "2 + 2 = 4"
 
 -------------------
 
+0. Getting started with a Visual Studio project
+
+If you're using Visual Studio, there are a LOT of options for what kind of application to make. For this
+assignment, create a project like this:
+
+- Select File -> New -> Project...
+- This will bring up a "New Project" window, that has "Templates" on the left-hand panel.
+- Select "Visual C++" under Templates. This will show you a list of project types in the middle panel.
+- Select "Win32 Console Application" from the list in the middle panel.
+- In the "Name" text field towards the bottom of the window, it should say something like "ConsoleApplication1".
+	Change this name to "RoboticsAssignment1". (The other two text fields below Name will update automatically.)
+- Make sure the checkboxes are checked for "Create directory for solution" and "Add to Source Control"
+- Click "OK".
+- This will bring up a new window "Welcome to the Win32 Application Wizard".
+- Click "Next >"
+- In Application Type, select "Console Application"
+- Uncheck all of the other checkboxes!
+- Click "Finish"
+
+This will bring up the code editor window showing the file "RoboticsAssignment1.cpp".
 
 1. Hello World
 
 Every intro to programming languages needs to tell you how to print out Hello Word. Here's one way to do
-it in C++:
+it in C++. Delete everything in RoboticsAssignment1.cpp, and then copy and paste this into the code
+editor window for RoboticsAssignment1.cpp:
 
-Put the following lines into a file called "helloword.cpp":
 
 #include <iostream>
 int main()
 {
+	// Send "Hello World" and endl (end of line) to the "common output", cout.
 	std::cout << "Hello World" << std::endl;
+
+	// Get a character from the "common input", cin. This keeps the program window visible.
+	std::cin.get();
+
+	// Tell the operating system that the program completed with no errors (error code zero)
 	return 0;
 }
 
 
+Save the file. Then click where it has a green play symbol and the words "Local Windows Debugger".
+This should bring up a new window with the message "Hello World".
+
+Questions:
+1. Try deleting the line that says "std::cin.get();". What happens?
+2. Try deleting "<< std::endl" (leaving the ';' in place) from the line that starts "std::cout".
+	Can you see the difference?
+
+
+Now commit the saved file to your local Git repository. In Visual Studio, you should see a pencil icon
+in the bottom of the window, on the right-hand side, with a number next to it. Click the pencil, to bring
+up the git changes panel. It should show RoboticsAssignment1.cpp as having changes. Right click on RoboticsAssignment1.cpp
+in this list, and select "Stage", which makes the changes in this file part of a pending git change.
+Then enter a commit message (like "hello world assignment") and click the "Commit Staged" button.
+
+Now, your change is in a local repository of changes, which means that you can look back at an earlier version of the
+file.
+
 -------------------
-2. Counting
 
-Write a program that prints the numbers from 1 to 10, each on a separate line.
+2. Loops
 
-Hint: Use a "while" loop. This is a way to repeat a block of code for as long as the
+A loop is a block of code that executes repeatedly.
+
+First, let's look at a "while loop". This is a way to repeat a block of code for as long as the
 "test" (which is the expression in parentheses after the "while") is true. For example, the
 following code adds together the numbers from 1 to 100, storing the result in "sum"
 
@@ -172,20 +217,58 @@ int sum = 0;
 
 // The test in this while statement will be true as long as number is less than or equal to 100.
 while (number <= 100) {
-	sum += number;
-	number++;
+
+	sum = sum + number; // This gives sum a new value, which is the old value of sum, plus the value of number
+	number = number + 1; // This gives number a new value, which is the old value of number, plus 1.
 }
 
-A closely related statement is "for". It's really common to add 1 to a variable for each time through
-the block of code, which is what happens to "number" in the example above. (This is called "incrementing"
-the variable.) Since it's so common, there is a special way of writing it, using a "for" loop.
+(In programming, it's very common to want to change the current value of a variable. So there are shorter ways
+to do this. Instead of writing "sum = sum + number", you can just write "sum += number". These mean exactly
+the same thing. And, since adding 1 to a variable is so common, you can write just "number++" instead of
+"number = number + 1". This is called "incrementing" the variable.)
+
+A closely related statement is a "for loop". It combines setup, test for completion, and action to take after each iteration
+into a single statement:
 
 int sum = 0;
 for (int number = 1; number <= 100; number++) {
 	sum += number;
 }
 
-	
+So, now that we know how to write loops, let's see how to use them to count to 10.
+
+Delete everything in RoboticsAssignment1.cpp, and copy and paste this into the file RoboticsAssignment1.cpp:
+
+#include <iostream>
+
+int main()
+{
+	// We want to start counting at 1.
+	int number = 1;
+
+	// A loop that will continue running until number is NOT less than or equal to 10.
+	while (number <= 10)
+	{
+		// Send number to common output. (This also takes care of making number something that can be printed.)
+		std::cout << number << std::endl;
+		number++; // This increments number by 1.
+	}
+
+	// Get a character from the "common input", cin. This keeps the program window visible.
+	std::cin.get();
+
+	// Tell the operating system that the program completed with no errors (error code zero)
+	return 0;
+}
+
+Save the file, and then click "Local Windows Debugger" to run the program. It should show the
+numbers from 1 to 10, one on each line.
+
+Questions:
+1. Try deleting the line that says "number++;". What happens? Can you tell why?
+2. Put the number++ back where it was. Now try deleting the "<<std::endl" (but not the ';').
+	What happens?
+
 -------------------
 
 3. More complex counting
@@ -415,7 +498,7 @@ prints out:
 --------------------------------------------------------------------------
 
 
-8. let's use arrays to solve a problem!
+8. let's use containers to solve a problem!
 
 Do you remember prime numbers from math class? The oldest way of finding prime numbers is called
 "The Sieve of Eratosthenes". This is something you can do on paper, by writing down the numbers

@@ -21,10 +21,16 @@ Next, you will need a development environment. This means, at least, that you
 will have a computer with a text editor and a compiler installed on it. It's fine
 to use Windows, Linux, or Mac, since all have excellent development tools.
 
+There are three programming languages that seem to be most popular for programming
+robots: Java, Python, and C++. Learning to solve problems in any of these languages,
+and to write clear and readable code, is excellent preparation for the kinds of
+programming challenges that you will encounter while building a robot. 
+
 On Windows, I recommend using Visual Studio Community 2017, which contains both compiler
 and editor and is freely available here:
 https://www.visualstudio.com/
-(Under "Download Visual Studio", select "Community 2017")
+Under "Download Visual Studio", select "Community 2017". When installing, choose Workload
+of "Desktop development with C++", then hit "Install".
 
 On Linux, I like either Emacs or Vim for editors, and g++ for a compiler, and I think
 that these are also available on Mac. (XCode is probably more popular on the Mac, but
