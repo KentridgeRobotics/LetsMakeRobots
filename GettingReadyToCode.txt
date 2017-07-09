@@ -15,6 +15,11 @@ https://guides.github.com/activities/hello-world/
 
 This is a good video introduction to Git and Github: https://youtu.be/MJUJ4wbFm_A
 
+Once you've completed these steps, clone the LetsMakeRobots repository to your
+machine, add some text to the file Log.txt, and submit a pull request with
+your changes.
+The repository is: https://github.com/KentridgeRobotics/LetsMakeRobots
+
 ---------------------------------------------------------------------
 
 Next, you will need a development environment. This means, at least, that you
@@ -46,7 +51,6 @@ It sounds like C++ is going to be used for at least some of our programming
 in the next build season. So let's get familiar with it. Read through the short guide to C++ here,
 and do the exercises:
 https://github.com/KentridgeRobotics/LetsMakeRobots/blob/master/LearningCPlusPlus.txt
-
 
 For more in-depth information, these are good starting links as introductions to C++:
 http://www.cplusplus.com/doc/tutorial/
